@@ -1,0 +1,5 @@
+with(finalHpc, plot(newDate, Sub_metering_3, type="l", ylim=c(0,38), ylab="Energy sub metering", xlab="", col="blue"))
+par(new=T)
+with(finalHpc, plot(newDate, Sub_metering_1, type="l", ylim=c(0,38), ylab="", xlab=""))
+par(new=T)
+with(finalHpc, plot(newDate, Sub_metering_2, type="l", ylim=c(0,38), ylab="", xlab="", col="red"))
