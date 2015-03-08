@@ -1,0 +1,5 @@
+hpc<-read.table("household_power_consumption.txt", sep = ";", stringsAsFactors=FALSE)
+finalHpc1<-filter(hpc2, Date=="2007-02-01")
+finalHpc2<-filter(hpc2, Date=="2007-02-02")
+finalHpc<-cbind(finalHpc1, finalHpc2)
+hist(finalHpc$Global_active_power, freq = TRUE, breaks = 12, xlab = "Global Active Power (kilowatts)", ylab = "Frequency", col="red", bg = "transparent", main = "Global Active Power")
