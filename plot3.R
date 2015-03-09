@@ -1,3 +1,12 @@
+hpc<-read.table("household_power_consumption.txt", sep = ";", stringsAsFactors=FALSE)
+finalHpc1<-filter(hpc, Date=="2007-02-01")
+finalHpc2<-filter(hpc, Date=="2007-02-02")
+finalHpc<-rbind(finalHpc1, finalHpc2)
+finalHpc$Date<-as.Date(finalHpc$Date)
+test<-paste(finalHpc$Date, finalHpc$Time)
+test<-mutate(finalHpc, newDate=test)
+finalHpc<-test
+finalHpc$newDate<-strptime(finalHpc$newDate, format="%F %H:%M:%S")
 with(finalHpc, plot(newDate, Sub_metering_3, type="l", ylim=c(0,38), ylab="Energy sub metering", xlab="", col="blue"))
 par(new=T)
 with(finalHpc, plot(newDate, Sub_metering_1, type="l", ylim=c(0,38), ylab="", xlab=""))

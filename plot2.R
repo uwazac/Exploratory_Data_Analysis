@@ -1,6 +1,6 @@
 hpc<-read.table("household_power_consumption.txt", sep = ";", stringsAsFactors=FALSE)
-finalHpc1<-filter(hpc2, Date=="2007-02-01")
-finalHpc2<-filter(hpc2, Date=="2007-02-02")
+finalHpc1<-filter(hpc, Date=="2007-02-01")
+finalHpc2<-filter(hpc, Date=="2007-02-02")
 finalHpc<-rbind(finalHpc1, finalHpc2)
 test<-paste(finalHpc$Date, finalHpc$Time)
 test<-mutate(finalHpc, newDate=test)
