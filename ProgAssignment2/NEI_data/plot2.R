@@ -1,0 +1,6 @@
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
+library(dplyr)
+bal_PM2.5<-filter(NEI, fips == "24510")
+bal_emsP2.5<-summarize(group_by(bal_PM2.5,year), sum(Emissions))
+plot(bal_emsP2.5[[1]], bal_emsP2.5[[2]], xlab="Year", ylab="PM2.5 emissions", main = "Total PM2.5 Emissions - Baltimore",type="l", col="red")
