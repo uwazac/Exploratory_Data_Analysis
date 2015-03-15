@@ -10,13 +10,18 @@ los_gas<-filter(mergedGas, fips=="06037")
 balt_gas$fips<-"Balt"
 los_gas$fips<-"LA"
 
+balt_VS_LA<-rbind(balt_gas, los_gas)
+
 bals_VS_LA_Emissions<-summarize(group_by(balt_VS_LA, fips, year), sum(Emissions))
 
 bals_VS_LA_Emissions$fips<-as.factor(bals_VS_LA_Emissions$fips)
 
 colnames(bals_VS_LA_Emissions)[[1]]<-"City"
+colnames(bals_VS_LA_Emissions)[[3]]<-"Emissions"
 
 bals_VS_LA_Emissions<-as.data.frame(bals_VS_LA_Emissions)
+
+
 
 g<-ggplot(bals_VS_LA_Emissions, aes(year, log(Emissions)))
 
