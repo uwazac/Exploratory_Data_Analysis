@@ -1,16 +1,17 @@
-NEI <- readRDS("summarySCC_PM25.rds")
-SCC <- readRDS("Source_Classification_Code.rds")
+# NEI <- readRDS("summarySCC_PM25.rds")
+# SCC <- readRDS("Source_Classification_Code.rds")
 library(dplyr)
 library(ggplot2)
-gas<-filter(SCC, SCC.Level.Two=="Highway Vehicles - Gasoline")
-mergedGas<-merge(NEI, gas, by="SCC")
-balt_gas<-filter(mergedGas, fips=="24510")
-los_gas<-filter(mergedGas, fips=="06037")
+vehicle<-grep("Veh", SCC$SCC.Level.Two)
+vehicle<-SCC[vehicle,]
+merged_veh<-merge(NEI, vehicle, by="SCC")
+balt_veh<-filter(merged_veh, fips=="24510")
+los_veh<-filter(merged_veh, fips=="06037")
 
-balt_gas$fips<-"Balt"
-los_gas$fips<-"LA"
+balt_veh$fips<-"Balt"
+los_veh$fips<-"LA"
 
-balt_VS_LA<-rbind(balt_gas, los_gas)
+balt_VS_LA<-rbind(balt_veh, los_veh)
 
 bals_VS_LA_Emissions<-summarize(group_by(balt_VS_LA, fips, year), sum(Emissions))
 
