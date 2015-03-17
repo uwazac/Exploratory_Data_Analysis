@@ -1,5 +1,5 @@
-# NEI <- readRDS("summarySCC_PM25.rds")
-# SCC <- readRDS("Source_Classification_Code.rds")
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
 library(dplyr)
 library(ggplot2)
 vehicle<-grep("Veh", SCC$SCC.Level.Two)
