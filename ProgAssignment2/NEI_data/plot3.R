@@ -16,4 +16,5 @@ bal_sources<-summarize(group_by(bal_PM2.5, type, year), sum(Emissions))
 bal_sources$type<-as.factor(bal_sources$type)
 
 # Generate the plot using the 'qplot' function from ggplot2
+# Plot the log value of 'Emissions' to allow more readable display of the data
 qplot(bal_sources$year, log(bal_sources[[3]]), xlab="Year", ylab="log(Emissions)", geom="line", main = "PM2.5 Emissions - Baltimore", color=bal_sources$type)
